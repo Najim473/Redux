@@ -1,0 +1,12 @@
+What is Redux :
+
+01. Redux is a state management library for Javascript applications.
+02. Redux is used to the manage data or state of complex Javascript applications.
+
+             
+                           (props)
+
+01. Cetralize application state
+02. Data-flow transparent
+03. Easy to debug application
+04. Preserve the page state
