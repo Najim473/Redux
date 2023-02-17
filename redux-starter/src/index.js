@@ -1,20 +1,36 @@
-// IMMUTABILITY 
-const numbers = [10, 20, 30, 40];
-console.log(numbers)
-// ADDING ITEMS
-const addNumbers = [50, ...numbers]
-console.log(addNumbers)
+// EXERCICE 01
+// REPLACE PRICE $8 TO $10 & RATING 4.7 TO 4.8
+import { produce } from "immer";
+const book = {
+    author: "Robert Kiyosaki",
+    book: {
+        name: "Rich Dad Poor Dad",
+        price: "$8",
+        rating: 4.7,
+    },
+};
+// USING IMMER
+const newBook = produce(book, (drafState) => {
+    (drafState.price = "$10"), (drafState.rating = 4.8);
+});
 
-// REPLACE 50 IN PLACE OF 30 
+// SPREAD OPERATOR
+// const newBook1 = {
+//     ...book,
+//     book: { ...book.book, price: '$10', rating: 4.8 }
+// }
+console.log(book);
+// USING IMMER
+console.log(newBook);
 
-const index = numbers.indexOf(30);
-const addNumbers2 = [...numbers.slice(0, index), 50, ...numbers.slice(index)]
-console.log(addNumbers2)
+// USING SPREAD OPERATOR
+// console.log(newBook1)
 
-// UPDATING ITEMS 
-const updated = numbers.map(a => a === 40 ? 80 : a);
-console.log(updated)
-
-// REMOVING ITEMS 
-const removed = numbers.filter(a => a != 30)
-console.log(removed)
+// EXERCISE 02
+// REPLACE BOOK2 TO BOOK4
+const arrOfBooks = ["Book1", "Book2", "Book3"];
+console.log(arrOfBooks);
+const newArraOfBooks = arrOfBooks.map((book) =>
+    book === "Book2" ? "Book4" : book
+);
+console.log(newArraOfBooks);
