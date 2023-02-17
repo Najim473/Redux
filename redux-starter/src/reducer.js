@@ -1,5 +1,5 @@
 let id = 0;
-function reducer(state = [], action) {
+export default function reducer(state = [], action) {
     switch (action.type) {
         case "ADD_TASK": {
             return [
@@ -11,7 +11,7 @@ function reducer(state = [], action) {
                 },
             ];
         }
-        case REMOVE_TASK: {
+        case "REMOVE_TASK": {
             return state.filter((task) => task.id !== action.payload.id);
         }
         default:
