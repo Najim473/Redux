@@ -1,4 +1,4 @@
-import { compose, pipe } from 'lodash/fp';
+import { pipe } from 'lodash/fp';
 let username = "Herly";
 let message = "Hello " + username.trim() + "Good Morning";
 console.log(message);
