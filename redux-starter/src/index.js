@@ -1,6 +1,7 @@
 import store from "./store";
-store.dispatch({ type: "ADD_TASK", payload: { task: "This is task 01" } });
-store.dispatch({ type: "ADD_TASK", payload: { task: "This is task 02" } });
-store.dispatch({ type: "ADD_TASK", payload: { task: "This is task 03" } });
-store.dispatch({ type: "REMOVE_TASK", payload: { id: 1 } });
+import { addTask, removeTask } from "./action";
+store.dispatch(addTask("Task 01"));
+store.dispatch(addTask("Task 02"));
+store.dispatch(addTask("Task 03"));
+store.dispatch(removeTask(1));
 console.log(store.getState());
