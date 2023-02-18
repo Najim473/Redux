@@ -1,3 +1,6 @@
+import { createAction } from "@reduxjs/toolkit";
+const test = createAction("ADD_TASK");
+console.log(test({ task: 'Task create actions' }))
 // Action Types
 const ADD_TASK = "ADD_TASK";
 const REMOVE_TASK = "REMOVE_TASK";
