@@ -1,8 +1,25 @@
-import * as actionTypes from "./actionTypes";
+// Action Types
+const ADD_TASK = "ADD_TASK";
+const REMOVE_TASK = "REMOVE_TASK";
+const COMPLETED_TASK = "COMPLETED_TASK";
+// ACTIONS
+export const addTask = (task) => {
+    return { type: ADD_TASK, payload: { task: task } };
+};
+
+export const removeTask = (id) => {
+    return { type: REMOVE_TASK, payload: { id: id } };
+};
+
+export const completedTask = (id) => {
+    return { type: COMPLETED_TASK, payload: { id: id } };
+};
+
+// REDUCER
 let id = 0;
 export default function reducer(state = [], action) {
     switch (action.type) {
-        case actionTypes.ADD_TASK: {
+        case ADD_TASK: {
             return [
                 ...state,
                 {
@@ -12,10 +29,10 @@ export default function reducer(state = [], action) {
                 },
             ];
         }
-        case actionTypes.REMOVE_TASK: {
+        case REMOVE_TASK: {
             return state.filter((task) => task.id !== action.payload.id);
         }
-        case actionTypes.COMPLETED_TASK: {
+        case COMPLETED_TASK: {
             return state.map((task) =>
                 task.id === action.payload.id
                     ? {
