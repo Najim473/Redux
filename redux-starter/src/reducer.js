@@ -8,12 +8,22 @@ export default function reducer(state = [], action) {
                 {
                     id: ++id,
                     task: action.payload.task,
-                    complete: false,
+                    completed: false,
                 },
             ];
         }
         case actionTypes.REMOVE_TASK: {
             return state.filter((task) => task.id !== action.payload.id);
+        }
+        case actionTypes.COMPLETED_TASK: {
+            return state.map((task) =>
+                task.id === action.payload.id
+                    ? {
+                        ...task,
+                        completed: true,
+                    }
+                    : task
+            );
         }
         default:
             return state;

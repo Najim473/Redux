@@ -1,11 +1,13 @@
 import store from "./store";
-import { addTask, removeTask } from "./action";
+import { addTask, removeTask, completedTask } from "./action";
 const unSubscribe = store.subscribe(() => {
     console.log("Updated", store.getState());
 });
 store.dispatch(addTask("Task 01"));
+store.dispatch(addTask("Task 02"));
 console.log(store.getState());
-store.dispatch(removeTask(1));
+
 unSubscribe()
-store.dispatch(removeTask(2));
+store.dispatch(completedTask(2))
+store.dispatch(removeTask(1));
 console.log(store.getState());
