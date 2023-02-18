@@ -3,6 +3,7 @@ import log from "../middleware/log";
 import employeeReducer from "./employees";
 import tasksReducer from "./tasks";
 import logger from 'redux-logger'
+import error from "../middleware/error";
 const store = configureStore({
     reducer: {
         tasks: employeeReducer,
@@ -11,7 +12,7 @@ const store = configureStore({
     // WE CAN ALSO APPLY THIS WAY 
     // middleware: [log]
     // ALTERNATIVE WAY 
-    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), log]
+    middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), logger, error]
 });
 
 export default store;
