@@ -4,14 +4,14 @@ import { addEmployee } from "./store/employees";
 // const unSubscribe = store.subscribe(() => {
 //     console.log("Updated", store.getState());
 // });
-console.log(addEmployee())
+// console.log(addEmployee())
 store.dispatch(addTask({ task: "Task 01" }));
 store.dispatch(addTask({ task: "Task 02" }));
-console.log(store.getState());
+// console.log(store.getState());
 // unSubscribe();
 store.dispatch(completedTask({ id: 2 }));
 store.dispatch(removeTask({ id: 1 }));
-console.log(store.getState());
+// console.log(store.getState());
 ////////// EMPLOYEE ////////////
 store.dispatch(addEmployee({ employee: "Najim" }))
-console.log(store.getState)
+// console.log(store.getState)
