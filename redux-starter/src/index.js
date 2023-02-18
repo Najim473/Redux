@@ -1,18 +1,11 @@
+import axios from "axios";
 import store from "./store/configureStore";
-import { addTask, removeTask, completedTask } from "./store/tasks.js";
-import { addEmployee } from "./store/employees";
-// const unSubscribe = store.subscribe(() => {
-//     console.log("Updated", store.getState());
-// });
-// console.log(addEmployee())
-// store.dispatch(addTask({ task: "Task 01" }));
-// store.dispatch(addTask({ task: "Task 02" }));
-// console.log(store.getState());
-// unSubscribe();
-// store.dispatch(completedTask({ id: 2 }));
-// store.dispatch(removeTask({ id: 1 }));
-// console.log(store.getState());
-////////// EMPLOYEE ////////////
-// store.dispatch(addEmployee({ employee: "Najim" }))
-store.dispatch(({ type: "SHOW_ERROR", payload: { error: "user not found" } }))
-// console.log(store.getState)
+import { getTasks } from "./store/tasks";
+const gettingTasks = async () => {
+    // calling api
+    const response = await axios.get("http://localhost:5000/api/tasks");
+    console.log(response)
+    // dispatch action
+    store.dispatch(getTasks({ tasks: response.data }))
+};
+gettingTasks()
