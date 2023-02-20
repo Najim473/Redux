@@ -6,24 +6,31 @@ const initialState = {
     loading: false,
     error: null,
 };
-export const fetchTasks = createAsyncThunk(
-    "fetchTasks",
-    async (a, { rejectWithValue }) => {
-        try {
-            const response = await axios.get("/tasks");
-            return { tasks: response.data };
-        } catch (error) {
-            return rejectWithValue({ error: error.message });
-        }
-    }
-);
+// export const fetchTasks = createAsyncThunk(
+//     "fetchTasks",
+//     async (a, { rejectWithValue }) => {
+//         try {
+//             const response = await axios.get("/tasks");
+//             return { tasks: response.data };
+//         } catch (error) {
+//             return rejectWithValue({ error: error.message });
+//         }
+//     }
+// );
 const taskSlice = createSlice({
     name: "tasks",
     initialState,
     reducers: {
         // action : function
+        apiRequested: (state, action) => {
+            state.loading = true;
+        },
+        apiRequestFailed: (state, action) => {
+            state.loading = false;
+        },
         getTasks: (state, action) => {
             state.tasks = action.payload;
+            state.loading = false;
         },
         addTask: (state, action) => {
             state.tasks.push({
@@ -45,19 +52,19 @@ const taskSlice = createSlice({
             state.tasks[index].completed = true;
         },
     },
-    extraReducers: {
-        [fetchTasks.pending]: (state, action) => {
-            state.loading = true;
-        },
-        [fetchTasks.fulfilled]: (state, action) => {
-            state.tasks = action.payload.tasks;
-            state.loading = false;
-        },
-        [fetchTasks.rejected]: (state, action) => {
-            state.error = action.payload.error;
-            state.loading = false;
-        },
-    },
+    // extraReducers: {
+    //     [fetchTasks.pending]: (state, action) => {
+    //         state.loading = true;
+    //     },
+    //     [fetchTasks.fulfilled]: (state, action) => {
+    //         state.tasks = action.payload.tasks;
+    //         state.loading = false;
+    //     },
+    //     [fetchTasks.rejected]: (state, action) => {
+    //         state.error = action.payload.error;
+    //         state.loading = false;
+    //     },
+    // },
 });
 
 console.log(taskSlice);
