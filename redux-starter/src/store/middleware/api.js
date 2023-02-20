@@ -17,7 +17,7 @@ const api =
                     });
                     dispatch({ type: onSuccess, payload: response.data });
                 } catch (error) {
-                    dispatch({ type: onError, payload: { error: error.message } });
+                    if (onError) dispatch({ type: onError, payload: { error: error.message } });
                     // IT'S FOR ALL ERRORS NOT ONLY API ERRORS
                     dispatch({ type: "SHOW_ERROR", payload: { error: error.message } });
                 }

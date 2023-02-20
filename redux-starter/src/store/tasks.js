@@ -99,3 +99,11 @@ export const updateCompleted = (task) =>
         data: task,
         onSuccess: completedTask.type,
     });
+//  DELETE TASK SUING POST METHODS
+export const deleteTask = (task) =>
+    apiCallBegan({
+        // /tasks/6
+        url: `${url}/${task.id}`,
+        method: "DELETE",
+        onSuccess: removeTask.type,
+    });
