@@ -45,7 +45,7 @@ const taskSlice = createSlice({
             const index = state.tasks.findIndex(
                 (task) => task.id === action.payload.id
             );
-            state.tasks[index].completed = true;
+            state.tasks[index].completed = action.payload.completed;
         },
     },
     // extraReducers: {
@@ -73,7 +73,7 @@ export const {
     completedTask,
 } = taskSlice.actions;
 export default taskSlice.reducer;
-// ACTION CREATORS 
+// ACTION CREATORS
 const url = "/tasks";
 export const loadTasks = () =>
     apiCallBegan({
@@ -82,11 +82,20 @@ export const loadTasks = () =>
         onSuccess: getTasks.type,
         onError: apiRequestFailed.type,
     });
-
-export const addNewTask = (task) => apiCallBegan({
-    url,
-    method: "POST",
-    data: task,
-    onSuccess: addTask.type,
-
-})
+//  ADD TASK USING POST METHODS
+export const addNewTask = (task) =>
+    apiCallBegan({
+        url,
+        method: "POST",
+        data: task,
+        onSuccess: addTask.type,
+    });
+//  UPDATE TASK SUING POST METHODS
+export const updateCompleted = (task) =>
+    apiCallBegan({
+        // /tasks/6
+        url: `${url}/${task.id}`,
+        method: "PATCH",
+        data: task,
+        onSuccess: completedTask.type,
+    });
