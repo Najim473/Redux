@@ -1,14 +1,5 @@
 import store from "./store/configureStore";
-import { getTasks } from "./store/tasks";
-import { apiCallBegan } from "./store/api";
+import { loadTasks } from "./store/tasks";
 // console.log(getTasks());
 
-store.dispatch(
-    apiCallBegan({
-        url: "/tasks",
-        onStart: "tasks/apiRequested",
-        onSuccess: "tasks/getTasks",
-        onError: "tasks/apiRequestFailed",
-
-    })
-);
+store.dispatch(loadTasks());
