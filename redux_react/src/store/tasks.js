@@ -63,7 +63,7 @@ const taskSlice = createSlice({
     // },
 });
 
-console.log(taskSlice);
+// console.log(taskSlice);
 export const {
     apiRequested,
     apiRequestFailed,
@@ -77,7 +77,7 @@ export default taskSlice.reducer;
 const url = "/tasks";
 export const loadTasks = () =>
     apiCallBegan({
-        url: url,
+        url,
         onStart: apiRequested.type,
         onSuccess: getTasks.type,
         onError: apiRequestFailed.type,
