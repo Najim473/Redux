@@ -11,12 +11,10 @@ let tasks = [
     { id: 4, task: "Create reducer", completed: false },
     { id: 5, task: "Create store using reducer", completed: false },
 ];
-
 // Get all tasks
 app.get("/api/tasks", (req, res) => {
     res.json(tasks);
 });
-
 // Add new Task
 app.post("/api/tasks", (req, res) => {
     const newTask = { id: tasks.length + 1, ...req.body, completed: false };
@@ -24,14 +22,12 @@ app.post("/api/tasks", (req, res) => {
     console.log(tasks);
     res.json(newTask);
 });
-
 // Change task completed property
 app.patch("/api/tasks/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const index = tasks.findIndex((task) => task.id === id);
     const task = tasks[index];
     task.completed = req.body.completed;
-
     res.json(task);
 });
 
